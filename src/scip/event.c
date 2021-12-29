@@ -1671,6 +1671,7 @@ SCIP_RETCODE SCIPeventProcess(
    case SCIP_EVENTTYPE_ROWCOEFCHANGED:
    case SCIP_EVENTTYPE_ROWCONSTCHANGED: /*lint !e30 !e142*/
    case SCIP_EVENTTYPE_ROWSIDECHANGED: /*lint !e30 !e142*/
+   case SCIP_EVENTTYPE_HEUR:
    case SCIP_EVENTTYPE_SYNC: /*lint !e30 !e142*/
       SCIP_CALL( SCIPeventfilterProcess(eventfilter, set, event) );
       break;
