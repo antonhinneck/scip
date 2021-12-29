@@ -31,6 +31,7 @@
 #include "scip/type_var.h"
 #include "scip/type_sol.h"
 #include "scip/type_tree.h"
+#include "scip/type_heur.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -151,6 +152,7 @@ struct SCIP_EventRowSideChanged
 /** data for heuristic applied events */
 struct SCIP_EventHeur
 {
+   SCIP_HEUR*     heur;               /**< heuristic */
    SCIP_Real      cpuTimeInSec;       /**< time spent in heuristic in seconds */
    SCIP_Real      oldObj;             /**< old value of incumbent solution */
    SCIP_Real      newObj;             /**< new value of incumbent solution */

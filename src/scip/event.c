@@ -1364,6 +1364,7 @@ SCIP_RETCODE SCIPeventChgSol(
 /** set data of a heuristic applied event */
 SCIP_RETCODE SCIPeventHeurSetData(
    SCIP_EVENT*       event,              /**< event */
+   SCIP_HEUR*        heur,               /**< heuristic */
    SCIP_Real         cpuTimeInSec,       /**< time spent in heuristic in seconds */
    SCIP_Real         oldObj,             /**< old value of incumbent solution */
    SCIP_Real         newObj,             /**< new value of incumbent solution */
@@ -1379,6 +1380,7 @@ SCIP_RETCODE SCIPeventHeurSetData(
       return SCIP_INVALIDDATA;  /*lint !e527*/
    }
 
+   event->data.eventheur.heur = heur;
    event->data.eventheur.cpuTimeInSec = cpuTimeInSec;
    event->data.eventheur.oldObj = oldObj;
    event->data.eventheur.newObj = newObj;
@@ -1391,6 +1393,7 @@ SCIP_RETCODE SCIPeventHeurSetData(
 /** get data of a heuristic applied event */
 SCIP_RETCODE SCIPeventHeurGetData(
    SCIP_EVENT*       event,              /**< event */
+   SCIP_HEUR*        heur,               /**< heuristic */
    SCIP_Real*        cpuTimeInSec,       /**< time spent in heuristic in seconds */
    SCIP_Real*        oldObj,             /**< old value of incumbent solution */
    SCIP_Real*        newObj,             /**< new value of incumbent solution */
@@ -1404,6 +1407,10 @@ SCIP_RETCODE SCIPeventHeurGetData(
       SCIPerrorMessage("event is not a heuristic applied event\n");
       SCIPABORT();
       return SCIP_INVALIDDATA;  /*lint !e527*/
+   }
+
+   if( heur != NULL ){
+      heur = event->data.eventheur.heur;
    }
 
    if( cpuTimeInSec != NULL ){
