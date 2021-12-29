@@ -385,27 +385,6 @@ SCIP_RETCODE SCIPeventChgSol(
    SCIP_SOL*             sol                 /**< new primal solution */
    );
 
-
-/** set data of a heuristic applied event */
-SCIP_RETCODE SCIPeventHeurSetData(
-   SCIP_EVENT*       event,              /**< event */
-   SCIP_Real         cpuTimeInSec,       /**< time spent in heuristic in seconds */
-   SCIP_Real         oldObj,             /**< old value of incumbent solution */
-   SCIP_Real         newObj,             /**< new value of incumbent solution */
-   SCIP_Bool         firstSolution,      /**< first solution found */
-   SCIP_Bool         improvedSolution    /**< improved solution found */ 
-   );
-
-/** get data of a heuristic applied event */
-SCIP_RETCODE SCIPeventHeurGetData(
-   SCIP_EVENT*       event,              /**< event */
-   SCIP_Real*        cpuTimeInSec,       /**< time spent in heuristic in seconds */
-   SCIP_Real*        oldObj,             /**< old value of incumbent solution */
-   SCIP_Real*        newObj,             /**< new value of incumbent solution */
-   SCIP_Bool*        firstSolution,      /**< first solution found */
-   SCIP_Bool*        improvedSolution    /**< improved solution found */ 
-   );
-
 /** processes event by calling the appropriate event handlers */
 SCIP_RETCODE SCIPeventProcess(
    SCIP_EVENT*           event,              /**< event */
@@ -415,8 +394,6 @@ SCIP_RETCODE SCIPeventProcess(
    SCIP_BRANCHCAND*      branchcand,         /**< branching candidate storage; only needed for bound change events, or NULL */
    SCIP_EVENTFILTER*     eventfilter         /**< event filter for global events; not needed for variable specific events */
    );
-
-
 
 /*
  * Event filter methods

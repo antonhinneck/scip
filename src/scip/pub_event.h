@@ -227,6 +227,28 @@ SCIP_Real SCIPeventGetRowNewSideVal(
    SCIP_EVENT*           event               /**< event */
    );
 
+/** set data of a heuristic applied event */
+SCIP_EXPORT
+SCIP_RETCODE SCIPeventHeurSetData(
+   SCIP_EVENT*       event,              /**< event */
+   SCIP_Real         cpuTimeInSec,       /**< time spent in heuristic in seconds */
+   SCIP_Real         oldObj,             /**< old value of incumbent solution */
+   SCIP_Real         newObj,             /**< new value of incumbent solution */
+   SCIP_Bool         firstSolution,      /**< first solution found */
+   SCIP_Bool         improvedSolution    /**< improved solution found */ 
+   );
+
+/** get data of a heuristic applied event */
+SCIP_EXPORT
+SCIP_RETCODE SCIPeventHeurGetData(
+   SCIP_EVENT*       event,              /**< event */
+   SCIP_Real*        cpuTimeInSec,       /**< time spent in heuristic in seconds */
+   SCIP_Real*        oldObj,             /**< old value of incumbent solution */
+   SCIP_Real*        newObj,             /**< new value of incumbent solution */
+   SCIP_Bool*        firstSolution,      /**< first solution found */
+   SCIP_Bool*        improvedSolution    /**< improved solution found */ 
+   );
+
 #ifdef NDEBUG
 
 /* In optimized mode, the function calls are overwritten by defines to reduce the number of function calls and
