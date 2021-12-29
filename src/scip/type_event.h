@@ -86,7 +86,6 @@ extern "C" {
 #define SCIP_EVENTTYPE_NODEBRANCHED     UINT64_C(0x000200000)  /**< the focus node has been solved by branching */
 #define SCIP_EVENTTYPE_NODEDELETE       UINT64_C(0x000400000)  /**< a node is about to be deleted from the tree */
 
-
 /* LP events */
 #define SCIP_EVENTTYPE_FIRSTLPSOLVED    UINT64_C(0x000800000)  /**< the node's initial LP was solved */
 #define SCIP_EVENTTYPE_LPSOLVED         UINT64_C(0x001000000)  /**< the node's LP was completely solved with cut & price */
@@ -106,6 +105,9 @@ extern "C" {
 
 /* sync event */
 #define SCIP_EVENTTYPE_SYNC             UINT64_C(0x400000000) /**< synchronization event */
+
+/* heur event */
+#define SCIP_EVENTTYPE_HEUR             UINT64_C(0x800000000)  /**< a heuristic was applied */
 
 /* event masks for variable events */
 #define SCIP_EVENTTYPE_GBDCHANGED     (SCIP_EVENTTYPE_GLBCHANGED | SCIP_EVENTTYPE_GUBCHANGED)
@@ -161,6 +163,7 @@ typedef struct SCIP_EventRowDeletedLP SCIP_EVENTROWDELETEDLP; /**< data for row 
 typedef struct SCIP_EventRowCoefChanged SCIP_EVENTROWCOEFCHANGED; /**< data for row coefficient change events */
 typedef struct SCIP_EventRowConstChanged SCIP_EVENTROWCONSTCHANGED; /**< data for row constant change events */
 typedef struct SCIP_EventRowSideChanged SCIP_EVENTROWSIDECHANGED; /**< data for row side change events */
+typedef struct SCIP_EventHeur SCIP_EVENTHEUR;     /**< data for heuristic applied event */ 
 typedef struct SCIP_EventData SCIP_EVENTDATA;     /**< locally defined event specific data */
 typedef struct SCIP_EventFilter SCIP_EVENTFILTER; /**< event filter to select events to be processed by an event handler */
 typedef struct SCIP_EventQueue SCIP_EVENTQUEUE;   /**< event queue to cache events and process them later */

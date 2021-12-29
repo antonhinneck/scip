@@ -1361,6 +1361,74 @@ SCIP_RETCODE SCIPeventChgSol(
    return SCIP_OKAY;
 }
 
+/** set data of a heuristic applied event */
+SCIP_RETCODE SCIPeventHeurSetData(
+   SCIP_EVENT*       event,              /**< event */
+   SCIP_Real         cpuTimeInSec,       /**< time spent in heuristic in seconds */
+   SCIP_Real         oldObj,             /**< old value of incumbent solution */
+   SCIP_Real         newObj,             /**< new value of incumbent solution */
+   SCIP_Bool         firstSolution,      /**< first solution found */
+   SCIP_Bool         improvedSolution    /**< improved solution found */ 
+   )
+{
+   assert(event != NULL);
+
+   if( (event->eventtype & SCIP_EVENTTYPE_HEUR) == 0 ){
+      SCIPerrorMessage("event is not a heuristic applied event\n");
+      SCIPABORT();
+      return SCIP_INVALIDDATA;  /*lint !e527*/
+   }
+
+   event->data.eventheur.cpuTimeInSec = cpuTimeInSec;
+   event->data.eventheur.oldObj = oldObj;
+   event->data.eventheur.newObj = newObj;
+   event->data.eventheur.firstSolution = firstSolution;
+   event->data.eventheur.improvedSolution = improvedSolution;
+
+   return SCIP_OKAY;
+}
+
+/** get data of a heuristic applied event */
+SCIP_RETCODE SCIPeventHeurGetData(
+   SCIP_EVENT*       event,              /**< event */
+   SCIP_Real*        cpuTimeInSec,       /**< time spent in heuristic in seconds */
+   SCIP_Real*        oldObj,             /**< old value of incumbent solution */
+   SCIP_Real*        newObj,             /**< new value of incumbent solution */
+   SCIP_Bool*        firstSolution,      /**< first solution found */
+   SCIP_Bool*        improvedSolution    /**< improved solution found */ 
+   )
+{
+   assert(event != NULL);
+
+   if( (event->eventtype & SCIP_EVENTTYPE_HEUR) == 0 ){
+      SCIPerrorMessage("event is not a heuristic applied event\n");
+      SCIPABORT();
+      return SCIP_INVALIDDATA;  /*lint !e527*/
+   }
+
+   if( cpuTimeInSec != NULL ){
+      *cpuTimeInSec = event->data.eventheur.cpuTimeInSec;
+   }
+
+   if( oldObj != NULL ){
+      *oldObj = event->data.eventheur.oldObj;
+   }
+
+   if( newObj != NULL ){
+      *newObj = event->data.eventheur.newObj;
+   }
+
+   if( firstSolution != NULL ){
+      *firstSolution = event->data.eventheur.firstSolution;
+   }
+
+   if( improvedSolution != NULL ){
+      *improvedSolution = event->data.eventheur.improvedSolution;
+   }
+
+   return SCIP_OKAY;
+}
+
 /** gets the left bound of open interval in the hole */
 SCIP_Real SCIPeventGetHoleLeft(
    SCIP_EVENT*           event               /**< event */

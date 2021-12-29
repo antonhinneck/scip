@@ -148,6 +148,16 @@ struct SCIP_EventRowSideChanged
    SCIP_Real             newval;             /**< new value of side */
 };
 
+/** data for heuristic applied events */
+struct SCIP_EventHeur
+{
+   SCIP_Real      cpuTimeInSec;       /**< time spent in heuristic in seconds */
+   SCIP_Real      oldObj;             /**< old value of incumbent solution */
+   SCIP_Real      newObj;             /**< new value of incumbent solution */
+   SCIP_Bool      firstSolution;      /**< first solution found */
+   SCIP_Bool      improvedSolution;   /**< improved solution found */ 
+};
+
 /** event data structure */
 struct SCIP_Event
 {
@@ -169,6 +179,7 @@ struct SCIP_Event
       SCIP_EVENTROWCOEFCHANGED eventrowcoefchanged; /**< data for row coefficient change events */
       SCIP_EVENTROWCONSTCHANGED eventrowconstchanged; /**< data for row constant change events */
       SCIP_EVENTROWSIDECHANGED eventrowsidechanged; /**< data for row side change events */
+      SCIP_EVENTHEUR eventheur;               /**< data for heur events */
       SCIP_NODE*         node;                /**< data for node and LP events */
       SCIP_SOL*          sol;                 /**< data for primal solution events */
    } data;
